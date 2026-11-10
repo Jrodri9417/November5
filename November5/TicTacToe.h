@@ -16,4 +16,13 @@ namespace TicTacToe
 
 	void printTheGrid(twoDGrid& TicTacToeGrid);
 
+	bool checkForWin(const twoDGrid& TicTacToeGrid);// passing by reference saves on RAM
+
+	//now the start of the "helper" function secion: 
+
+	bool checkForHorizontalWin(const twoDGrid& TicTacToeGrid);
+	bool checkForVerticalWin(const twoDGrid& TicTacToeGrid);
+	bool checkForDiagonalWin(const twoDGrid& TicTacToeGrid);
+
 }
+

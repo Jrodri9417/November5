@@ -26,12 +26,20 @@ void demoPassByReference()
 	//std::cout << "Welcome to Tic Tac Toe!" << std::endl;
 int main()
 	{
+		//using number = int
+
+		//number myFavoriteNumber = 123;
+
+		std::string fillerCharacter = "a"; //sometihing that holds the spot until x or o takes its sport 
+		//so we dont have an empty space char
+
 		std::vector<std::vector<std::string>> TicTacToeGrid(3, std::vector<std::string>(3));
 		//What does the line above do?
 		//it makes an empty 2D array of size 3x3
 
 		//TicTacToeGrid[0][0] = "x";
 
+		
 		TicTacToe::playGame(TicTacToeGrid);
 
 	
