@@ -6,10 +6,10 @@
 void TicTacToe::playGame(twoDGrid& TicTacToeGrid)
 {
 	//for(), this is not a good idea
-	bool isGameOne = false;
+	bool isGameWon = false;
 	int moveCount = 0;
 
-	while (isGameOne == false)
+	while (isGameWon == false)
 	{
 		//prompt players for moves
 		printTheGrid(TicTacToeGrid);
@@ -26,6 +26,16 @@ void TicTacToe::playGame(twoDGrid& TicTacToeGrid)
 
 		updateGrid(TicTacToeGrid, playerxMove, "x");
 		moveCount = moveCount + 1;
+
+		if (moveCount >= 0)
+		{
+			isGameWon = checkForWin(TicTacToeGrid);
+
+			if (isGameWon == true)
+			{
+				break;
+			}
+		}
 
 		std::cout << "After the player x made a move, the grid looks like: " << std::endl;
 		printTheGrid(TicTacToeGrid);
@@ -46,7 +56,7 @@ void TicTacToe::playGame(twoDGrid& TicTacToeGrid)
 
 		if (moveCount >= 5)
 		{
-			isGameOne = checkForWin(TicTacToeGrid);
+			isGameWon = checkForWin(TicTacToeGrid);
 		}
 
 
@@ -119,6 +129,18 @@ void TicTacToe::playGame(twoDGrid& TicTacToeGrid)
 
 bool TicTacToe::checkForHorizontalWin(const twoDGrid& TicTacToeGrid)
 {
+	for (int row = 0; row < 3; ++row)
+	{
+		if (TicTacToeGrid[row][0] == TicTacToeGrid[row][1] 
+			&& 
+			TicTacToeGrid[row][1] == TicTacToeGrid[row][2])
+		{
+			std::cout << "Player " << TicTacToeGrid[row][0] << " Victory" << std::endl;
+			return true;
+		}
+	}
+
+	return false; 
 	//if (checkForHorizonatalWin(TicTacToeGrid)) == true)
 	//for (int variableName; sadfasdf; asdfasdf)
 	//{
