@@ -14,10 +14,10 @@ void TicTacToe::playGame(twoDGrid& TicTacToeGrid)
 		//prompt players for moves
 		printTheGrid(TicTacToeGrid);
 
-		std::cout << "Player x, enter your move: " << std::endl;
-		std::cout << "Enter the row number (0-2) " << std::endl; //doing this prevents the user from having to say "row 0 column 1" or "row 2 column 0" and instead just say "01" or "20"
-		std::cout << "Enter the column number (0-2): " << std::endl;
-		std::cout << "Enter your move in the for " << std::endl;
+		std::cout << " Player x, enter your move: " << std::endl;
+		std::cout << " Enter row number (0-2): " << std::endl; //doing this prevents the user from having to say "row 0 column 1" or "row 2 column 0" and instead just say "01" or "20"
+		std::cout << " Enter column number (0-2): " << std::endl;
+		std::cout << " Enter your move in the format 'a, b, c': " << std::endl;
 
 
 		std::string playerxMove;
@@ -64,52 +64,57 @@ void TicTacToe::playGame(twoDGrid& TicTacToeGrid)
 		//this is the end of the playGame function, it will return to main and end the progra
 	}
 
-	void TicTacToe::updateGrid(twoDGrid& TicTacToeGrid, std::string theMove, std::string playerID)
+}
+
+void TicTacToe::updateGrid(twoDGrid& TicTacToeGrid, std::string theMove, std::string playerID)
+{
+	//1st row
+	if (theMove == "a")
 	{
-		//1st row
-		if (theMove == "a")
-		{
-			TicTacToeGrid[0][0] = playerID;
-		}
-		else if (theMove == "b")
-		{
-			TicTacToeGrid[0][1] = playerID;
-		}
-		else if (theMove == "c")
-		{
-			TicTacToeGrid[0][2] = playerID;
-		}
-
-		//2nd row 
-		else if (theMove == "d")
-		{
-			TicTacToeGrid[1][0] = playerID;
-		}
-		else if (theMove == "e")
-		{
-			TicTacToeGrid[1][1] = playerID;
-		}
-
-		else if (theMove == "f")
-		{
-			TicTacToeGrid[1][2] = playerID;
-		}
-
-		//3rd row
-		else if (theMove == "g")
-		{
-			TicTacToeGrid[2][0] = playerID;
-		}
-		else if (theMove == "h")
-		{
-			TicTacToeGrid[2][1] = playerID;
-		}
-		else if (theMove == "i")
-		{
-			TicTacToeGrid[2][2] = playerID;
-		}
+		TicTacToeGrid[0][0] = playerID;
+	}
+	else if (theMove == "b")
+	{
+		TicTacToeGrid[0][1] = playerID;
+	}
+	else if (theMove == "c")
+	{
+		TicTacToeGrid[0][2] = playerID;
 	}
 
+	//2nd row 
+	else if (theMove == "d")
+	{
+		TicTacToeGrid[1][0] = playerID;
+	}
+	else if (theMove == "e")
+	{
+		TicTacToeGrid[1][1] = playerID;
+	}
+
+	else if (theMove == "f")
+	{
+		TicTacToeGrid[1][2] = playerID;
+	}
+
+	//3rd row
+	else if (theMove == "g")
+	{
+		TicTacToeGrid[2][0] = playerID;
+	}
+	else if (theMove == "h")
+	{
+		TicTacToeGrid[2][1] = playerID;
+	}
+	else if (theMove == "i")
+	{
+		TicTacToeGrid[2][2] = playerID;
+	}
+
+}
+
+	
+	
 	void TicTacToe::printTheGrid(twoDGrid& TicTacToeGrid)
 	{
 		for (int row = 0; row < TicTacToeGrid.size(); ++row)
@@ -118,29 +123,33 @@ void TicTacToe::playGame(twoDGrid& TicTacToeGrid)
 			{
 				std::cout << "|" << TicTacToeGrid[row][col];
 			}
-			std::cout << std::endl;
-			//std::cout <<
-			//std::cout << "______" << std::endl;
+				std::cout << std::endl;
+				//std::cout <<
+				//std::cout << "______" << std::endl;
+
 		}
 	}
 
 
-}
 
-bool TicTacToe::checkForHorizontalWin(const twoDGrid& TicTacToeGrid)
-{
-	for (int row = 0; row < 3; ++row)
+	bool TicTacToe::checkForHorizontalWin(const twoDGrid& TicTacToeGrid)
 	{
-		if (TicTacToeGrid[row][0] == TicTacToeGrid[row][1] 
-			&& 
-			TicTacToeGrid[row][1] == TicTacToeGrid[row][2])
+		for (int row = 0; row < 3; ++row)
 		{
-			std::cout << "Player " << TicTacToeGrid[row][0] << " Victory" << std::endl;
-			return true;
-		}
-	}
+			if (TicTacToeGrid[row][0] != "" &&
 
-	return false; 
+				TicTacToeGrid[row][0] == TicTacToeGrid[row][1] &&
+
+				TicTacToeGrid[row][1] == TicTacToeGrid[row][2])
+				{
+					std::cout << "Player " << TicTacToeGrid[row][0] << " Victory" << std::endl;
+					return true;
+				}
+
+		}
+
+		return false;
+	}
 	//if (checkForHorizonatalWin(TicTacToeGrid)) == true)
 	//for (int variableName; sadfasdf; asdfasdf)
 	//{
@@ -168,4 +177,61 @@ bool TicTacToe::checkForHorizontalWin(const twoDGrid& TicTacToeGrid)
 //
 //	//return false;//unreachable code, but the compiler will complain if we dont have it
 
+
+
+bool TicTacToe::checkForVerticalWin(const twoDGrid& TicTacToeGrid)
+{
+	for (int col = 0; col < 3; col++)
+	{
+		if (TicTacToeGrid[0][col] != "" &&
+			TicTacToeGrid[0][col] == TicTacToeGrid[1][col] &&
+			TicTacToeGrid[1][col] == TicTacToeGrid[2][col])
+		{
+			std::cout << "Player " << TicTacToeGrid[0][col] << " Victory" << std::endl;
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool TicTacToe::checkForDiagonalWin(const twoDGrid& TicTacToeGrid)
+{
+	if (TicTacToeGrid[0][0] != "" &&
+		TicTacToeGrid[0][0] == TicTacToeGrid[1][1] &&
+		TicTacToeGrid[1][1] == TicTacToeGrid[2][2])
+	{
+		std::cout << "Player " << TicTacToeGrid[0][0] << " Victory" << std::endl;
+		return true;
+	}
+
+	if (TicTacToeGrid[0][2] != "" &&
+		TicTacToeGrid[0][2] == TicTacToeGrid[1][1] &&
+		TicTacToeGrid[1][1] == TicTacToeGrid[2][0])
+	{
+		std::cout << "Player " << TicTacToeGrid[0][2] << " Victory" << std::endl;
+		return true;
+	}
+
+	return false;
+}
+
+bool TicTacToe::checkForWin(const twoDGrid& TicTacToeGrid)
+{
+	if (checkForHorizontalWin(TicTacToeGrid) == true)
+	{
+		return true;
+	}
+
+	if (checkForVerticalWin(TicTacToeGrid) == true)
+	{
+		return true;
+	}
+
+	if (checkForDiagonalWin(TicTacToeGrid) == true)
+	{
+		return true;
+	}
+
+	return false;
 }
