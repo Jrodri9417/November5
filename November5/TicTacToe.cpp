@@ -184,7 +184,9 @@ bool TicTacToe::checkForVerticalWin(const twoDGrid& TicTacToeGrid)
 	for (int col = 0; col < 3; col++)
 	{
 		if (TicTacToeGrid[0][col] != "" &&
+
 			TicTacToeGrid[0][col] == TicTacToeGrid[1][col] &&
+
 			TicTacToeGrid[1][col] == TicTacToeGrid[2][col])
 		{
 			std::cout << "Player " << TicTacToeGrid[0][col] << " Victory" << std::endl;
@@ -198,7 +200,9 @@ bool TicTacToe::checkForVerticalWin(const twoDGrid& TicTacToeGrid)
 bool TicTacToe::checkForDiagonalWin(const twoDGrid& TicTacToeGrid)
 {
 	if (TicTacToeGrid[0][0] != "" &&
+
 		TicTacToeGrid[0][0] == TicTacToeGrid[1][1] &&
+
 		TicTacToeGrid[1][1] == TicTacToeGrid[2][2])
 	{
 		std::cout << "Player " << TicTacToeGrid[0][0] << " Victory" << std::endl;
@@ -206,7 +210,9 @@ bool TicTacToe::checkForDiagonalWin(const twoDGrid& TicTacToeGrid)
 	}
 
 	if (TicTacToeGrid[0][2] != "" &&
+
 		TicTacToeGrid[0][2] == TicTacToeGrid[1][1] &&
+
 		TicTacToeGrid[1][1] == TicTacToeGrid[2][0])
 	{
 		std::cout << "Player " << TicTacToeGrid[0][2] << " Victory" << std::endl;
